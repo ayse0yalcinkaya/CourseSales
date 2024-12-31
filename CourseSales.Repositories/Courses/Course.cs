@@ -1,4 +1,4 @@
-﻿namespace CourseSales.Repositories
+﻿namespace CourseSales.Repositories.Courses
 {
     public class Course
     {

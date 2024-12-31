@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CourseSales.Repositories.Courses;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace CourseSales.Repositories
