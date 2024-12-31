@@ -1,13 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseSales.Repositories", "CourseSales.Repositories\CourseSales.Repositories.csproj", "{46E3D6E5-A26B-4268-B6CA-5B514539448A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseSales.Service", "CourseSales.Service\CourseSales.Service.csproj", "{1B2931E0-D9D5-4831-8E98-31F2DC784E8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseSales.API", "CourseSales.API\CourseSales.API.csproj", "{EE7CE7B9-F800-4CF1-9F2B-466D24534D0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseSales.API", "CourseSales.API\CourseSales.API.csproj", "{FE7C006F-C500-4C40-B2DC-E6252FBA72E8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1B2931E0-D9D5-4831-8E98-31F2DC784E8B} = {1B2931E0-D9D5-4831-8E98-31F2DC784E8B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +26,10 @@ Global
 		{1B2931E0-D9D5-4831-8E98-31F2DC784E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B2931E0-D9D5-4831-8E98-31F2DC784E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B2931E0-D9D5-4831-8E98-31F2DC784E8B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE7CE7B9-F800-4CF1-9F2B-466D24534D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE7CE7B9-F800-4CF1-9F2B-466D24534D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE7CE7B9-F800-4CF1-9F2B-466D24534D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE7CE7B9-F800-4CF1-9F2B-466D24534D0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE7C006F-C500-4C40-B2DC-E6252FBA72E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7C006F-C500-4C40-B2DC-E6252FBA72E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7C006F-C500-4C40-B2DC-E6252FBA72E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7C006F-C500-4C40-B2DC-E6252FBA72E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
