@@ -2,5 +2,6 @@
 {
     public interface ICourseService
     {
+        Task<ServiceResult<List<CourseDto>>> GetTopPriceCourseAsync(int count);
     }
 }
