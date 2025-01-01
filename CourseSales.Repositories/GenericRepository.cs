@@ -10,6 +10,8 @@ namespace CourseSales.Repositories
 {
     internal class GenericRepository<T>(CourseSalesDbContext context) : IGenericRepository<T> where T : class
     {
+        protected CourseSalesDbContext Context = context;
+
         private readonly DbSet<T> _dbSet= context.Set<T>();
         public async ValueTask AddAsync(T entity) => await _dbSet.AddAsync(entity);
 
