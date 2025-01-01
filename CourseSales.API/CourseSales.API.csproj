@@ -18,8 +18,4 @@
     <ProjectReference Include="..\CourseSales.Service\CourseSales.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

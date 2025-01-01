@@ -1,5 +1,6 @@
 ﻿using CourseSales.Repositories;
 using CourseSales.Repositories.Courses;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Http.Headers;
 
@@ -20,7 +21,14 @@ namespace CourseSales.Service.Courses
             };
 
         }
-        public async Task<ServiceResult<CourseDto>> GetCourseByIdAsync(int id)
+
+        public async Task<ServiceResult<List<CourseDto>>> GetAllListAsync()
+        {
+            var courses = await courseRepository.GetAll().ToListAsync();
+            var coursesAsDto = courses.Select(c => new CourseDto(c.Id, c.Name, c.Price, c.Stock)).ToList();
+            return ServiceResult<List<CourseDto>>.Success(coursesAsDto);
+        }
+        public async Task<ServiceResult<CourseDto?>> GetByIdAsync(int id)
         {
             var course = await courseRepository.GetByIdAsync(id);
 
@@ -31,11 +39,11 @@ namespace CourseSales.Service.Courses
 
             var courseAsDto = new CourseDto(course!.Id, course.Name, course.Price, course.Stock);
 
-            return ServiceResult<CourseDto>.Success(courseAsDto!);
+            return ServiceResult<CourseDto>.Success(courseAsDto)!;
 
         }
 
-        public async Task<ServiceResult<CreateCourseResponse>> CreateCourseAsync(CreateCourseRequest request)
+        public async Task<ServiceResult<CreateCourseResponse>> CreateAsync(CreateCourseRequest request)
         {
             var course = new Course()
             {
@@ -50,7 +58,7 @@ namespace CourseSales.Service.Courses
 
         }
 
-        public async Task<ServiceResult> UpdateCourseAsync(int id, UpdateCourseRequest request)
+        public async Task<ServiceResult> UpdateAsync(int id, UpdateCourseRequest request)
         {
             var course = await courseRepository.GetByIdAsync(id);
             
@@ -70,7 +78,7 @@ namespace CourseSales.Service.Courses
 
         }
 
-        public async Task<ServiceResult> DeleteCourseAsync(int id)
+        public async Task<ServiceResult> DeleteAsync(int id)
         {
             var course = await courseRepository.GetByIdAsync(id);
             if (course is null)
