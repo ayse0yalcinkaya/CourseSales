@@ -27,8 +27,10 @@ namespace CourseSales.API.Controllers
         public async Task<IActionResult> GetById(int id) => CreateActionResult(await courseService.GetByIdAsync(id));
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateCourseRequest request) =>
-            CreateActionResult(await courseService.CreateAsync(request));
+        public async Task<IActionResult> Create(CreateCourseRequest request)
+        {
+            return CreateActionResult(await courseService.CreateAsync(request));
+        }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdateCourseRequest request) =>

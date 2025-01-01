@@ -62,7 +62,8 @@ namespace CourseSales.Service.Courses
             
             await courseRepository.AddAsync(course);
             await unitOfWork.SaveChangeAsync();
-            return ServiceResult<CreateCourseResponse>.Success(new CreateCourseResponse(course.Id));
+            return ServiceResult<CreateCourseResponse>.SuccessAsCreated(new CreateCourseResponse(course.Id), 
+                $"api/courses/{course.Id}");
 
         }
 
