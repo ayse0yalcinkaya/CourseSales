@@ -28,6 +28,14 @@ namespace CourseSales.Service.Courses
             var coursesAsDto = courses.Select(c => new CourseDto(c.Id, c.Name, c.Price, c.Stock)).ToList();
             return ServiceResult<List<CourseDto>>.Success(coursesAsDto);
         }
+
+        public async Task<ServiceResult<List<CourseDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
+        {
+            int skip = (pageNumber - 1)*pageSize;
+            var courses = await courseRepository.GetAll().Skip(skip).Take(pageSize).ToListAsync();
+            var coursesAsDto = courses.Select(c => new CourseDto(c.Id, c.Name, c.Price, c.Stock)).ToList();
+            return ServiceResult<List<CourseDto>>.Success(coursesAsDto);
+        }
         public async Task<ServiceResult<CourseDto?>> GetByIdAsync(int id)
         {
             var course = await courseRepository.GetByIdAsync(id);

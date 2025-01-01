@@ -14,6 +14,15 @@ namespace CourseSales.API.Controllers
             return CreateActionResult(serviceResult);
         }
 
+        [HttpGet("{pageNumber}/{pageSize}")]
+        public async Task<IActionResult> GetPagedAll(int pageNumber, int pageSize)
+        {
+            var serviceResult = await courseService.GetPagedAllListAsync(pageNumber, pageSize);
+
+            return CreateActionResult(serviceResult);
+        }
+
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id) => CreateActionResult(await courseService.GetByIdAsync(id));
 
