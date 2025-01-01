@@ -10,6 +10,9 @@ namespace CourseSales.Service.Courses
 {
     public class CourseService(ICourseRepository courseRepository): ICourseService
     {
-
+        public Task<List<Course>> GetTopPriceCourseAsync(int count)
+        {
+            return courseRepository.GetTopPriceCourseAsync(count);
+        }
     }
 }

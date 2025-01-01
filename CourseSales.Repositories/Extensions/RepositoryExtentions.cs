@@ -20,6 +20,8 @@ namespace CourseSales.Repositories.Extensions
 
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }
     }
