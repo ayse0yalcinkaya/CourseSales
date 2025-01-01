@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseSales.Service
+namespace CourseSales.Service.Courses
 {
-    internal class CourseService(ICourseRepository courseRepository)
+    public class CourseService(ICourseRepository courseRepository): ICourseService
     {
-        
+
     }
 }
