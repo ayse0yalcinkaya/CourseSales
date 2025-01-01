@@ -1,6 +1,4 @@
-﻿using System.Net;
-using CourseSales.Service.Courses;
-using Microsoft.AspNetCore.Http;
+﻿using CourseSales.Service.Courses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourseSales.API.Controllers
@@ -16,18 +14,18 @@ namespace CourseSales.API.Controllers
             return CreateActionResult(serviceResult);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id) => CreateActionResult(await courseService.GetByIdAsync(id));
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateCourseRequest request) =>
             CreateActionResult(await courseService.CreateAsync(request));
 
-        [HttpPost]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdateCourseRequest request) =>
             CreateActionResult(await courseService.UpdateAsync(id, request));
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id) =>
             CreateActionResult(await courseService.DeleteAsync(id));
     }

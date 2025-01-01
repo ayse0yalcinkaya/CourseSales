@@ -1,4 +1,4 @@
 ﻿namespace CourseSales.Service.Courses;
 
-public record UpdateCourseRequest(int Id, string Name, decimal Price, int Stock);
+public record UpdateCourseRequest(string Name, decimal Price, int Stock);
 

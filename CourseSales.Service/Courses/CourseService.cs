@@ -74,7 +74,7 @@ namespace CourseSales.Service.Courses
             courseRepository.Update(course);
             await unitOfWork.SaveChangeAsync();
 
-            return ServiceResult.Success();
+            return ServiceResult.Success(HttpStatusCode.NoContent);
 
         }
 
@@ -88,7 +88,7 @@ namespace CourseSales.Service.Courses
             courseRepository.Delete(course);
             await unitOfWork.SaveChangeAsync();
 
-            return ServiceResult.Success();
+            return ServiceResult.Success(HttpStatusCode.NoContent);
         }
 
     }
