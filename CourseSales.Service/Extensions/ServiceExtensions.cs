@@ -13,7 +13,7 @@ namespace CourseSales.Service.Extensions
         {
             services.AddScoped<ICourseService, CourseService>();
 
-            services.AddFluentValidationAutoValidation();
+            //services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             return services;
         }

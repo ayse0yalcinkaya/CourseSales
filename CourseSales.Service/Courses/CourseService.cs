@@ -3,11 +3,13 @@ using CourseSales.Repositories.Courses;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Http.Headers;
+using FluentValidation;
 
 
 namespace CourseSales.Service.Courses
 {
-    public class CourseService(ICourseRepository courseRepository, IUnitOfWork unitOfWork): ICourseService
+    public class CourseService(ICourseRepository courseRepository, IUnitOfWork unitOfWork, 
+        IValidator<CreateCourseRequest> createCourseRequestValidator): ICourseService
     {
         public async Task<ServiceResult<List<CourseDto>>> GetTopPriceCourseAsync(int count)
         {
@@ -53,6 +55,20 @@ namespace CourseSales.Service.Courses
 
         public async Task<ServiceResult<CreateCourseResponse>> CreateAsync(CreateCourseRequest request)
         {
+            //var anyCourse = await courseRepository.Where(x => x.Name == request.Name).AnyAsync();
+            //if (anyCourse)
+            //{
+            //    return ServiceResult<CreateCourseResponse>.Fail("Kurs ismi veritabanında bulunmaktadır", HttpStatusCode.BadRequest);
+            //}
+            var validationResult = await createCourseRequestValidator.ValidateAsync(request);
+            if (!validationResult.IsValid)
+            {
+                return ServiceResult<CreateCourseResponse>.Fail(
+                    validationResult.Errors.Select(x => x.ErrorMessage).ToList());
+                
+            }
+
+
             var course = new Course()
             {
                 Name = request.Name,
