@@ -85,12 +85,13 @@ namespace CourseSales.Service.Courses
             }
 
 
-            var course = new Course()
-            {
-                Name = request.Name,
-                Price = request.Price,
-                Stock = request.Stock,
-            };
+            //var course = new Course()
+            //{
+            //    Name = request.Name,
+            //    Price = request.Price,
+            //    Stock = request.Stock,
+            //};
+            var course = mapper.Map<Course>(request);
 
             await courseRepository.AddAsync(course);
             await unitOfWork.SaveChangeAsync();
@@ -101,12 +102,23 @@ namespace CourseSales.Service.Courses
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateCourseRequest request)
         {
+            // FluentValidation doğrulaması
+            var validator = new UpdateCourseRequestValidator();
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (!validationResult.IsValid)
+            {
+                return ServiceResult.Fail(validationResult.Errors.Select(x=>x.ErrorMessage).ToList());
+            }
+
             var course = await courseRepository.GetByIdAsync(id);
 
             if (course is null)
             {
                 return ServiceResult.Fail("Course not found", HttpStatusCode.NotFound);
             }
+
+           
 
             var isCourseNameExist = 
                 await courseRepository.Where(x => x.Name == request.Name && x.Id != course.Id).AnyAsync();
@@ -116,9 +128,11 @@ namespace CourseSales.Service.Courses
                 return ServiceResult.Fail("Kurs ismi veritabanında bulunmaktadır", HttpStatusCode.BadRequest);
             }
 
-            course.Name = request.Name;
-            course.Price = request.Price;
-            course.Stock = request.Stock;
+            //course.Name = request.Name;
+            //course.Price = request.Price;
+            //course.Stock = request.Stock;
+
+            course = mapper.Map(request, course);
 
 
             courseRepository.Update(course);
