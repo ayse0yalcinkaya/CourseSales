@@ -14,7 +14,7 @@ namespace CourseSales.API.Controllers
             return CreateActionResult(serviceResult);
         }
 
-        [HttpGet("{pageNumber}/{pageSize}")]
+        [HttpGet("{pageNumber:int}/{pageSize:int}")]
         public async Task<IActionResult> GetPagedAll(int pageNumber, int pageSize)
         {
             var serviceResult = await courseService.GetPagedAllListAsync(pageNumber, pageSize);
@@ -23,7 +23,7 @@ namespace CourseSales.API.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id) => CreateActionResult(await courseService.GetByIdAsync(id));
 
         [HttpPost]
@@ -32,7 +32,7 @@ namespace CourseSales.API.Controllers
             return CreateActionResult(await courseService.CreateAsync(request));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> Update(int id, UpdateCourseRequest request) =>
             CreateActionResult(await courseService.UpdateAsync(id, request));
 
@@ -40,7 +40,7 @@ namespace CourseSales.API.Controllers
         public async Task<IActionResult> UpdateStock(UpdateCourseStockRequest request) =>
             CreateActionResult(await courseService.UpdateStockAsync(request));
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id) =>
             CreateActionResult(await courseService.DeleteAsync(id));
     }
