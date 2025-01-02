@@ -1,4 +1,5 @@
-﻿using CourseSales.Repositories;
+﻿using System.Globalization;
+using CourseSales.Repositories;
 using CourseSales.Repositories.Courses;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
@@ -7,6 +8,7 @@ using AutoMapper;
 using FluentValidation;
 using CourseSales.Service.Courses.Update;
 using CourseSales.Service.Courses.Create;
+using CourseSales.Service.ExceptionHandlers;
 
 namespace CourseSales.Service.Courses
 {
@@ -62,9 +64,12 @@ namespace CourseSales.Service.Courses
             return ServiceResult<CourseDto>.Success(courseAsDto)!;
 
         }
-
+         
         public async Task<ServiceResult<CreateCourseResponse>> CreateAsync(CreateCourseRequest request)
         {
+            //throw new CriticalException("Kritik seviye bir hata meydana geldi");
+            throw new Exception("db hatası");
+
             //var anyCourse = await courseRepository.Where(x => x.Name == request.Name).AnyAsync();
             //if (anyCourse)
             //{

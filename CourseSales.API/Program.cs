@@ -22,6 +22,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddRepositories(builder.Configuration).AddServices(builder.Configuration);
 var app = builder.Build();
 
+
+app.UseExceptionHandler(x =>{});
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
