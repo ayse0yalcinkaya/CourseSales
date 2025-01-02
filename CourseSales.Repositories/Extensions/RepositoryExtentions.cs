@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CourseSales.Repositories.Categories;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using CourseSales.Repositories.Courses;
@@ -19,6 +20,7 @@ namespace CourseSales.Repositories.Extensions
             });
 
             services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CourseSales.Repositories
 {
-    internal class GenericRepository<T>(CourseSalesDbContext context) : IGenericRepository<T> where T : class
+    public class GenericRepository<T>(CourseSalesDbContext context) : IGenericRepository<T> where T : class
     {
         protected CourseSalesDbContext Context = context;
 

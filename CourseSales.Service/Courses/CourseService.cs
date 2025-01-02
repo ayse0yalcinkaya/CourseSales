@@ -1,15 +1,12 @@
-﻿using System.Globalization;
+﻿using AutoMapper;
 using CourseSales.Repositories;
 using CourseSales.Repositories.Courses;
+using CourseSales.Service.Courses.Create;
+using CourseSales.Service.Courses.Update;
+using CourseSales.Service.Courses.UpdateStock;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
-using System.Net.Http.Headers;
-using AutoMapper;
-using FluentValidation;
-using CourseSales.Service.Courses.Update;
-using CourseSales.Service.Courses.Create;
-using CourseSales.Service.ExceptionHandlers;
-using CourseSales.Service.Courses.UpdateStock;
 
 namespace CourseSales.Service.Courses
 {
@@ -20,7 +17,9 @@ namespace CourseSales.Service.Courses
         {
             var courses = await courseRepository.GetTopPriceCourseAsync(count);
 
-            var coursesAsDto = courses.Select(c => new CourseDto(c.Id, c.Name, c.Price, c.Stock)).ToList();
+            //var coursesAsDto = courses.Select(c => new CourseDto(c.Id, c.Name, c.Price, c.Stock)).ToList();
+
+            var coursesAsDto = mapper.Map<List<CourseDto>>(courses);
 
             return new ServiceResult<List<CourseDto>>()
             {
