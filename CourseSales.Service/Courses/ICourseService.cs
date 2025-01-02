@@ -8,6 +8,7 @@
         Task<ServiceResult<CourseDto?>> GetByIdAsync(int id);
         Task<ServiceResult<CreateCourseResponse>> CreateAsync(CreateCourseRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateCourseRequest request);
+        Task<ServiceResult> UpdateStockAsync(UpdateCourseStockRequest request);
         Task<ServiceResult> DeleteAsync(int id);
 
     }

@@ -87,6 +87,21 @@ namespace CourseSales.Service.Courses
 
         }
 
+        public async Task<ServiceResult> UpdateStockAsync(UpdateCourseStockRequest request)
+        {
+            var course = await courseRepository.GetByIdAsync(request.CourseId);
+            if (course is null)
+            {
+                return ServiceResult.Fail("Course not found", HttpStatusCode.NotFound);
+            }
+
+            course.Stock = request.Quantity;
+            courseRepository.Update(course);
+            await unitOfWork.SaveChangeAsync();
+
+            return ServiceResult.Success(HttpStatusCode.NoContent);
+        }
+
         public async Task<ServiceResult> DeleteAsync(int id)
         {
             var course = await courseRepository.GetByIdAsync(id);

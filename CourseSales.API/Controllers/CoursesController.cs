@@ -36,6 +36,10 @@ namespace CourseSales.API.Controllers
         public async Task<IActionResult> Update(int id, UpdateCourseRequest request) =>
             CreateActionResult(await courseService.UpdateAsync(id, request));
 
+        [HttpPatch("stock")]
+        public async Task<IActionResult> UpdateStock(UpdateCourseStockRequest request) =>
+            CreateActionResult(await courseService.UpdateStockAsync(request));
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id) =>
             CreateActionResult(await courseService.DeleteAsync(id));
