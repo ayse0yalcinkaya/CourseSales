@@ -1,6 +1,7 @@
 ﻿using CourseSales.Service.Courses;
 using CourseSales.Service.Courses.Create;
 using CourseSales.Service.Courses.Update;
+using CourseSales.Service.Courses.UpdateStock;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourseSales.API.Controllers

@@ -1,4 +1,4 @@
-﻿namespace CourseSales.Service.Courses.Update
+﻿namespace CourseSales.Service.Courses.UpdateStock
 {
     public record UpdateCourseStockRequest(int CourseId, int Quantity);
 

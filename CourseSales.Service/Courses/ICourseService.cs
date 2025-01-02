@@ -1,5 +1,6 @@
 ﻿using CourseSales.Service.Courses.Create;
 using CourseSales.Service.Courses.Update;
+using CourseSales.Service.Courses.UpdateStock;
 
 namespace CourseSales.Service.Courses
 {

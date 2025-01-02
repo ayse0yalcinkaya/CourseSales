@@ -9,6 +9,7 @@ using FluentValidation;
 using CourseSales.Service.Courses.Update;
 using CourseSales.Service.Courses.Create;
 using CourseSales.Service.ExceptionHandlers;
+using CourseSales.Service.Courses.UpdateStock;
 
 namespace CourseSales.Service.Courses
 {
@@ -68,7 +69,7 @@ namespace CourseSales.Service.Courses
         public async Task<ServiceResult<CreateCourseResponse>> CreateAsync(CreateCourseRequest request)
         {
             //throw new CriticalException("Kritik seviye bir hata meydana geldi");
-            throw new Exception("db hatası");
+            //throw new Exception("db hatası");
 
             //var anyCourse = await courseRepository.Where(x => x.Name == request.Name).AnyAsync();
             //if (anyCourse)
@@ -106,6 +107,15 @@ namespace CourseSales.Service.Courses
             {
                 return ServiceResult.Fail("Course not found", HttpStatusCode.NotFound);
             }
+
+            var isCourseNameExist = 
+                await courseRepository.Where(x => x.Name == request.Name && x.Id != course.Id).AnyAsync();
+
+            if (isCourseNameExist)
+            {
+                return ServiceResult.Fail("Kurs ismi veritabanında bulunmaktadır", HttpStatusCode.BadRequest);
+            }
+
             course.Name = request.Name;
             course.Price = request.Price;
             course.Stock = request.Stock;

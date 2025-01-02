@@ -11,7 +11,7 @@ namespace CourseSales.Service.Courses.Create
         public CreateCourseRequestValidator(ICourseRepository courseRepository)
         {
             _courseRepository = courseRepository;
-            RuleFor(x => x.Name)
+             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("Kurs ismi gereklidir")
                 .Length(3, 60).WithMessage("Kurs ismi 3 ile 60 karakter arasında olmalıdır")
                 .MustAsync(MustUniqueCourseNameAsync).WithMessage("Kurs ismi veritabanında bulunmaktadır");
