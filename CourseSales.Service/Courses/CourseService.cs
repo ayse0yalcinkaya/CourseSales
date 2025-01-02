@@ -3,13 +3,15 @@ using CourseSales.Repositories.Courses;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Http.Headers;
+using AutoMapper;
 using FluentValidation;
-
+using CourseSales.Service.Courses.Update;
+using CourseSales.Service.Courses.Create;
 
 namespace CourseSales.Service.Courses
 {
-    public class CourseService(ICourseRepository courseRepository, IUnitOfWork unitOfWork, 
-        IValidator<CreateCourseRequest> createCourseRequestValidator): ICourseService
+    public class CourseService(ICourseRepository courseRepository, IUnitOfWork unitOfWork,
+        IValidator<CreateCourseRequest> createCourseRequestValidator, IMapper mapper) : ICourseService
     {
         public async Task<ServiceResult<List<CourseDto>>> GetTopPriceCourseAsync(int count)
         {
@@ -27,15 +29,21 @@ namespace CourseSales.Service.Courses
         public async Task<ServiceResult<List<CourseDto>>> GetAllListAsync()
         {
             var courses = await courseRepository.GetAll().ToListAsync();
-            var coursesAsDto = courses.Select(c => new CourseDto(c.Id, c.Name, c.Price, c.Stock)).ToList();
+
+        //  var coursesAsDto = courses.Select(c => new CourseDto(c.Id, c.Name, c.Price, c.Stock)).ToList(); //manuel mapping
+            var coursesAsDto = mapper.Map<List<CourseDto>>(courses);
             return ServiceResult<List<CourseDto>>.Success(coursesAsDto);
         }
 
         public async Task<ServiceResult<List<CourseDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
         {
-            int skip = (pageNumber - 1)*pageSize;
+            int skip = (pageNumber - 1) * pageSize;
             var courses = await courseRepository.GetAll().Skip(skip).Take(pageSize).ToListAsync();
-            var coursesAsDto = courses.Select(c => new CourseDto(c.Id, c.Name, c.Price, c.Stock)).ToList();
+
+            //var coursesAsDto = courses.Select(c => new CourseDto(c.Id, c.Name, c.Price, c.Stock)).ToList(); //manuel mapping
+            var coursesAsDto = mapper.Map<List<CourseDto>>(courses);
+
+
             return ServiceResult<List<CourseDto>>.Success(coursesAsDto);
         }
         public async Task<ServiceResult<CourseDto?>> GetByIdAsync(int id)
@@ -44,10 +52,12 @@ namespace CourseSales.Service.Courses
 
             if (course is null)
             {
-                ServiceResult<CourseDto>.Fail("Course not found", System.Net.HttpStatusCode.NotFound);
+               return ServiceResult<CourseDto?>.Fail("Course not found", HttpStatusCode.NotFound);
             }
 
-            var courseAsDto = new CourseDto(course!.Id, course.Name, course.Price, course.Stock);
+            //var courseAsDto = new CourseDto(course!.Id, course.Name, course.Price, course.Stock);
+            var courseAsDto = mapper.Map<CourseDto>(course);
+
 
             return ServiceResult<CourseDto>.Success(courseAsDto)!;
 
@@ -65,7 +75,7 @@ namespace CourseSales.Service.Courses
             {
                 return ServiceResult<CreateCourseResponse>.Fail(
                     validationResult.Errors.Select(x => x.ErrorMessage).ToList());
-                
+
             }
 
 
@@ -75,10 +85,10 @@ namespace CourseSales.Service.Courses
                 Price = request.Price,
                 Stock = request.Stock,
             };
-            
+
             await courseRepository.AddAsync(course);
             await unitOfWork.SaveChangeAsync();
-            return ServiceResult<CreateCourseResponse>.SuccessAsCreated(new CreateCourseResponse(course.Id), 
+            return ServiceResult<CreateCourseResponse>.SuccessAsCreated(new CreateCourseResponse(course.Id),
                 $"api/courses/{course.Id}");
 
         }
@@ -86,7 +96,7 @@ namespace CourseSales.Service.Courses
         public async Task<ServiceResult> UpdateAsync(int id, UpdateCourseRequest request)
         {
             var course = await courseRepository.GetByIdAsync(id);
-            
+
             if (course is null)
             {
                 return ServiceResult.Fail("Course not found", HttpStatusCode.NotFound);

@@ -1,4 +1,6 @@
 ﻿using CourseSales.Service.Courses;
+using CourseSales.Service.Courses.Create;
+using CourseSales.Service.Courses.Update;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourseSales.API.Controllers

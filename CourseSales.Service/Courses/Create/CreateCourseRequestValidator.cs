@@ -3,9 +3,9 @@ using CourseSales.Repositories.Courses;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
-namespace CourseSales.Service.Courses
+namespace CourseSales.Service.Courses.Create
 {
-    public class CreateCourseRequestValidator: AbstractValidator<CreateCourseRequest>
+    public class CreateCourseRequestValidator : AbstractValidator<CreateCourseRequest>
     {
         private readonly ICourseRepository _courseRepository;
         public CreateCourseRequestValidator(ICourseRepository courseRepository)
@@ -15,9 +15,9 @@ namespace CourseSales.Service.Courses
                 .NotEmpty().WithMessage("Kurs ismi gereklidir")
                 .Length(3, 60).WithMessage("Kurs ismi 3 ile 60 karakter arasında olmalıdır")
                 .MustAsync(MustUniqueCourseNameAsync).WithMessage("Kurs ismi veritabanında bulunmaktadır");
-                //.Must(MustUniqueCourseNameAsync).WithMessage("Kurs ismi veritabanında bulunmaktadır");
+            //.Must(MustUniqueCourseNameAsync).WithMessage("Kurs ismi veritabanında bulunmaktadır");
 
-            RuleFor(x => x.Price)     
+            RuleFor(x => x.Price)
                 .GreaterThan(0).WithMessage("Kurs fiyatı 0'dan büyük olmalıdır");
 
             RuleFor(x => x.Stock)

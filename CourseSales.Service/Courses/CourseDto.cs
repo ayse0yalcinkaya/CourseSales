@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourseSales.Service.Courses
+namespace CourseSales.Service.Courses.Create
 {
     public record CourseDto(int Id, string Name, decimal Price, int Stock);
     //{

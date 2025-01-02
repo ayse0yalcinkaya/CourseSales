@@ -1,4 +1,7 @@
-﻿namespace CourseSales.Service.Courses
+﻿using CourseSales.Service.Courses.Create;
+using CourseSales.Service.Courses.Update;
+
+namespace CourseSales.Service.Courses
 {
     public interface ICourseService
     {
