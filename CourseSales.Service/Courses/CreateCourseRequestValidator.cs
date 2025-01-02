@@ -7,7 +7,6 @@ namespace CourseSales.Service.Courses
         public CreateCourseRequestValidator()
         {
             RuleFor(x => x.Name)
-                .NotNull().WithMessage("Kurs ismi gereklidir.")
                 .NotEmpty().WithMessage("Kurs ismi gereklidir")
                 .Length(3, 60).WithMessage("Kurs ismi 3 ile 60 karakter arasında olmalıdır");
             
