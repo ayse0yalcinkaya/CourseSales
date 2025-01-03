@@ -114,7 +114,7 @@ namespace CourseSales.Service.Courses
 
             if (course is null)
             {
-                return ServiceResult.Fail("Course not found", HttpStatusCode.NotFound);
+                return ServiceResult.Fail("Güncellenecek kurs bulunamadı.", HttpStatusCode.NotFound);
             }
 
            

@@ -1,19 +1,20 @@
-﻿using AutoMapper;
+﻿using System.Globalization;
+using AutoMapper;
 using CourseSales.Repositories.Courses;
 using CourseSales.Service.Courses.Create;
 using CourseSales.Service.Courses.Update;
 
-namespace CourseSales.Service.Mapping
+namespace CourseSales.Service.Courses
 {
-    public class MappingProfile : Profile
+    public class CourseMappingProfile : Profile
     {
-        public MappingProfile()
+        public CourseMappingProfile()
         {
             CreateMap<Course, CourseDto>().ReverseMap();
 
             CreateMap<CreateCourseRequest, Course>().ForMember(
-                dest => dest.Name, 
-                opt=> opt.MapFrom(src 
+                dest => dest.Name,
+                opt => opt.MapFrom(src
                     => src.Name.ToLowerInvariant()));
 
             CreateMap<UpdateCourseRequest, Course>().ForMember(

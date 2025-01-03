@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CourseSales.Service.Courses.Create;
 
-namespace CourseSales.Service.Categories
+namespace CourseSales.Service.Categories.Dto
 {
     public record CategoryWithCoursesDto(int Id, string Name, List<CourseDto> Courses);
 

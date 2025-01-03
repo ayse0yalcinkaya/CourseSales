@@ -10,7 +10,7 @@ namespace CourseSales.Repositories.Categories
              
         }
 
-        public IQueryable<Category> GetCategoryByCoursesAsync()
+        public IQueryable<Category> GetCategoryWithCourses()
         {
             return context.Categories.Include(x => x.Courses).AsQueryable();
         }
