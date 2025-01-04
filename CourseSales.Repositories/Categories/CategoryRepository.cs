@@ -2,7 +2,9 @@
 
 namespace CourseSales.Repositories.Categories
 {
-    public class CategoryRepository(CourseSalesDbContext context) : GenericRepository<Category>(context), ICategoryRepository
+    public class CategoryRepository(CourseSalesDbContext context) 
+        : GenericRepository<Category, int>(context), ICategoryRepository
+
     {
         public Task<Category?> GetCategoryWithCoursesAsync(int id)
         {

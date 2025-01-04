@@ -1,6 +1,9 @@
-﻿using CourseSales.Service.Categories;
+﻿using CourseSales.Repositories.Categories;
+using CourseSales.Repositories.Courses;
+using CourseSales.Service.Categories;
 using CourseSales.Service.Categories.Create;
 using CourseSales.Service.Categories.Update;
+using CourseSales.Service.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourseSales.API.Controllers
@@ -25,10 +28,12 @@ namespace CourseSales.API.Controllers
         public async Task<IActionResult> CreateCategory(CreateCategoryRequest request) => CreateActionResult(await 
             categoryService.CreateAsync(request));
 
+        [ServiceFilter(typeof(NotFoundFilter<Category, int>))]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCategory(int id, UpdateCategoryRequest request) => CreateActionResult(await
             categoryService.UpdateAsync(id, request));
 
+        [ServiceFilter(typeof(NotFoundFilter<Category, int>))]
         [HttpDelete("{id}")] 
         public async Task<IActionResult> DeleteCategory(int id) => CreateActionResult(await categoryService .DeleteAsync(id));
 

@@ -2,7 +2,7 @@
 
 namespace CourseSales.Repositories.Courses
 {
-    internal class CourseRepository(CourseSalesDbContext context) : GenericRepository<Course>(context), ICourseRepository
+    internal class CourseRepository(CourseSalesDbContext context) : GenericRepository<Course, int>(context), ICourseRepository
     {
         public Task<List<Course>> GetTopPriceCourseAsync(int count)
         {

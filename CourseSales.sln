@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseSales.API", "CourseSa
 		{1B2931E0-D9D5-4831-8E98-31F2DC784E8B} = {1B2931E0-D9D5-4831-8E98-31F2DC784E8B}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityCourseSales.Web", "IdentityCourseSales.Web\IdentityCourseSales.Web.csproj", "{974B1925-526E-44D2-9806-EA01222AD9EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{FE7C006F-C500-4C40-B2DC-E6252FBA72E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE7C006F-C500-4C40-B2DC-E6252FBA72E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE7C006F-C500-4C40-B2DC-E6252FBA72E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{974B1925-526E-44D2-9806-EA01222AD9EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{974B1925-526E-44D2-9806-EA01222AD9EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{974B1925-526E-44D2-9806-EA01222AD9EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{974B1925-526E-44D2-9806-EA01222AD9EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

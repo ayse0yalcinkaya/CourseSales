@@ -162,11 +162,13 @@ namespace CourseSales.Service.Courses
         public async Task<ServiceResult> DeleteAsync(int id)
         {
             var course = await courseRepository.GetByIdAsync(id);
-            if (course is null)
-            {
-                return ServiceResult.Fail("Course not found", HttpStatusCode.NotFound);
-            }
-            courseRepository.Delete(course);
+            //Filters kullanıyoruz checklendi
+            //if (course is null)
+            //{
+            //    return ServiceResult.Fail("Kurs bulunamadı", HttpStatusCode.NotFound);
+            //}
+
+            courseRepository.Delete(course!);
             await unitOfWork.SaveChangeAsync();
 
             return ServiceResult.Success(HttpStatusCode.NoContent);

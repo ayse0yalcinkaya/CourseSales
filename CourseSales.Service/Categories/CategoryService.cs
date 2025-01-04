@@ -73,14 +73,14 @@ namespace CourseSales.Service.Categories
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateCategoryRequest request)
         {
-            var category = await categoryRepository.GetByIdAsync(id);
-            if (category == null)
-            {
-                return ServiceResult.Fail("Güncellenecek kategori bulunamadı.", HttpStatusCode.NotFound);
-            }
+            //var category = await categoryRepository.GetByIdAsync(id);
+            //if (category == null)
+            //{
+            //    return ServiceResult.Fail("Güncellenecek kategori bulunamadı.", HttpStatusCode.NotFound);
+            //}
 
             var isCategoryNameExist = await categoryRepository.Where(
-                x => x.Name == request.Name && x.Id != category.Id).AnyAsync();
+                x => x.Name == request.Name && x.Id != id).AnyAsync();
 
             if (isCategoryNameExist) 
             {
@@ -88,7 +88,8 @@ namespace CourseSales.Service.Categories
 
             }
 
-            category = mapper.Map(request, category);
+            var category = mapper.Map<Category>(request);
+            category.Id = id;
 
             categoryRepository.Update(category);
             await unitOfWork.SaveChangeAsync();
@@ -98,11 +99,11 @@ namespace CourseSales.Service.Categories
         public async Task<ServiceResult> DeleteAsync(int id)
         {
             var category = await categoryRepository.GetByIdAsync(id);
-            if (category == null)
-            {
-                return ServiceResult.Fail("Kategori bulunamadı.", HttpStatusCode.NotFound);
-            }
-            categoryRepository.Delete(category);
+            //if (category == null)
+            //{
+            //    return ServiceResult.Fail("Kategori bulunamadı.", HttpStatusCode.NotFound);
+            //}
+            categoryRepository.Delete(category!);
             await unitOfWork.SaveChangeAsync();
 
             return ServiceResult.Success(HttpStatusCode.NoContent);

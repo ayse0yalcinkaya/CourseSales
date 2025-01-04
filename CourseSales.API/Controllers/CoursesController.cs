@@ -1,7 +1,9 @@
-﻿using CourseSales.Service.Courses;
+﻿using CourseSales.Repositories.Courses;
+using CourseSales.Service.Courses;
 using CourseSales.Service.Courses.Create;
 using CourseSales.Service.Courses.Update;
 using CourseSales.Service.Courses.UpdateStock;
+using CourseSales.Service.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourseSales.API.Controllers
@@ -35,14 +37,18 @@ namespace CourseSales.API.Controllers
             return CreateActionResult(await courseService.CreateAsync(request));
         }
 
+        [ServiceFilter(typeof(NotFoundFilter<Course, int>))]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Update(int id, UpdateCourseRequest request) =>
             CreateActionResult(await courseService.UpdateAsync(id, request));
 
+        
         [HttpPatch("stock")]
         public async Task<IActionResult> UpdateStock(UpdateCourseStockRequest request) =>
             CreateActionResult(await courseService.UpdateStockAsync(request));
 
+
+        [ServiceFilter(typeof(NotFoundFilter<Course, int>))]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id) =>
             CreateActionResult(await courseService.DeleteAsync(id));
