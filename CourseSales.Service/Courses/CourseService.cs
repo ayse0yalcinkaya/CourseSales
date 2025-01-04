@@ -70,18 +70,20 @@ namespace CourseSales.Service.Courses
             //throw new CriticalException("Kritik seviye bir hata meydana geldi");
             //throw new Exception("db hatası");
 
-            //var anyCourse = await courseRepository.Where(x => x.Name == request.Name).AnyAsync();
-            //if (anyCourse)
-            //{
-            //    return ServiceResult<CreateCourseResponse>.Fail("Kurs ismi veritabanında bulunmaktadır", HttpStatusCode.BadRequest);
-            //}
-            var validationResult = await createCourseRequestValidator.ValidateAsync(request);
-            if (!validationResult.IsValid)
+            var anyCourse = await courseRepository.Where(x => x.Name == request.Name).AnyAsync();
+            if (anyCourse)
             {
-                return ServiceResult<CreateCourseResponse>.Fail(
-                    validationResult.Errors.Select(x => x.ErrorMessage).ToList());
-
+                return ServiceResult<CreateCourseResponse>.Fail("Kurs ismi veritabanında bulunmaktadır", 
+                    HttpStatusCode.NotFound);
             }
+            //async manuel fluent validation business check
+            //var validationResult = await createCourseRequestValidator.ValidateAsync(request);
+            //if (!validationResult.IsValid)
+            //{
+            //    return ServiceResult<CreateCourseResponse>.Fail(
+            //        validationResult.Errors.Select(x => x.ErrorMessage).ToList());
+
+            //}
 
 
             //var course = new Course()
@@ -102,25 +104,25 @@ namespace CourseSales.Service.Courses
         public async Task<ServiceResult> UpdateAsync(int id, UpdateCourseRequest request)
         {
             // FluentValidation doğrulaması
-            var validator = new UpdateCourseRequestValidator();
-            var validationResult = await validator.ValidateAsync(request);
+            //var validator = new UpdateCourseRequestValidator();
+            //var validationResult = await validator.ValidateAsync(request);
 
-            if (!validationResult.IsValid)
-            {
-                return ServiceResult.Fail(validationResult.Errors.Select(x=>x.ErrorMessage).ToList());
-            }
+            //if (!validationResult.IsValid)
+            //{
+            //    return ServiceResult.Fail(validationResult.Errors.Select(x => x.ErrorMessage).ToList());
+            //}
 
-            var course = await courseRepository.GetByIdAsync(id);
+            //var course = await courseRepository.GetByIdAsync(id);
 
-            if (course is null)
-            {
-                return ServiceResult.Fail("Güncellenecek kurs bulunamadı.", HttpStatusCode.NotFound);
-            }
+            //if (course is null)
+            //{
+            //    return ServiceResult.Fail("Güncellenecek kurs bulunamadı.", HttpStatusCode.NotFound);
+            //}
 
-           
+
 
             var isCourseNameExist = 
-                await courseRepository.Where(x => x.Name == request.Name && x.Id != course.Id).AnyAsync();
+                await courseRepository.Where(x => x.Name == request.Name && x.Id != id).AnyAsync();
 
             if (isCourseNameExist)
             {
@@ -131,8 +133,9 @@ namespace CourseSales.Service.Courses
             //course.Price = request.Price;
             //course.Stock = request.Stock;
 
-            course = mapper.Map(request, course);
-
+            var course = mapper.Map<Course>(request);
+            course.Id = id;
+                
 
             courseRepository.Update(course);
             await unitOfWork.SaveChangeAsync();

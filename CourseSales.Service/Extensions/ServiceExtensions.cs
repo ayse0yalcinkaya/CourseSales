@@ -15,7 +15,7 @@ namespace CourseSales.Service.Extensions
         {
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<ICategoryService, CategoryService>();
-            services.AddFluentValidationAutoValidation();
+            //services.AddFluentValidationAutoValidation();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
