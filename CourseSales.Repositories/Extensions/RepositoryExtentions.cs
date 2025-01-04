@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using CourseSales.Repositories.Courses;
+using CourseSales.Repositories.Interceptors;
 
 namespace CourseSales.Repositories.Extensions
 {
@@ -17,6 +18,8 @@ namespace CourseSales.Repositories.Extensions
                 {
                     sqlServerOptionsAction.MigrationsAssembly(typeof(RepositoryAssembly).Assembly.FullName);
                 });
+
+                options.AddInterceptors(new AuditDbContextInterceptor());
             });
 
             services.AddScoped<ICourseRepository, CourseRepository>();

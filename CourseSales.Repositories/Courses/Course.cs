@@ -2,7 +2,7 @@
 
 namespace CourseSales.Repositories.Courses
 {
-    public class Course
+    public class Course:IAuditEntity
     {
         public int Id { get; set; }
         public string Name { get; set; } = default!;
@@ -11,5 +11,7 @@ namespace CourseSales.Repositories.Courses
         public string Description { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; } = default!;
+        public DateTime Created { get; set; }
+        public DateTime? Updated { get; set; }
     }
 }
