@@ -1,5 +1,7 @@
 using CourseSales.Repositories.Extensions;
 using CourseSales.Service;
+using CourseSales.Service.Authentication.Auth;
+using CourseSales.Service.Authentication.Token;
 using CourseSales.Service.Extensions;
 
 
@@ -17,6 +19,8 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRepositories(builder.Configuration).AddServices(builder.Configuration);
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 var app = builder.Build();
 
 
@@ -32,6 +36,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

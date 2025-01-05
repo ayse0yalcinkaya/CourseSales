@@ -14,14 +14,20 @@ namespace CourseSales.Repositories.Interceptors
 
         private static void AddBehavior(DbContext context, IAuditEntity auditEntity)
         {
+            //var currentUser = context.GetCurrentUser(); // Kullanıcı adını al (JWT)
             auditEntity.Created = DateTime.Now;
+            //auditEntity.CreatedBy = currentUser;
             context.Entry(auditEntity).Property(x => x.Updated).IsModified = false;
+            //context.Entry(auditEntity).Property(x => x.UpdatedBy).IsModified = false;
         }
 
         private static void ModifiedBehavior(DbContext context, IAuditEntity auditEntity)
         {
+            //var currentUser = context.GetCurrentUser(); // Kullanıcı adını al
             auditEntity.Updated = DateTime.Now;
+            //auditEntity.UpdatedBy = currentUser;
             context.Entry(auditEntity).Property(x => x.Created).IsModified = false;
+            //context.Entry(auditEntity).Property(x => x.CreatedBy).IsModified = false;
         }
 
 

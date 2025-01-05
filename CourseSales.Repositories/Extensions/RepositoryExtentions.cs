@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using CourseSales.Repositories.Courses;
 using CourseSales.Repositories.Interceptors;
+using CourseSales.Repositories.Users;
+using CourseSales.Repositories.Users.CourseSales.Repositories.Users;
 
 namespace CourseSales.Repositories.Extensions
 {
@@ -25,6 +27,7 @@ namespace CourseSales.Repositories.Extensions
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped(typeof(IGenericRepository<,>),typeof(GenericRepository<,>));
+            //services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;

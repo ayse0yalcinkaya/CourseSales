@@ -6,5 +6,12 @@
         {
             return context.SaveChangesAsync();
         }
+
+        
+        public int SaveChange()
+        {
+            return context.SaveChanges();
+        }
+
     }
 }

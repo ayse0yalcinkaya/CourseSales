@@ -8,6 +8,7 @@
 
   <ItemGroup>
 	  <FrameworkReference Include="Microsoft.AspNetCore.App" />
+	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -17,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="Payments\" />
   </ItemGroup>
 
 </Project>

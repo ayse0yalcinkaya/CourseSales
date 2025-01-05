@@ -8,5 +8,7 @@ namespace CourseSales.Repositories.Categories
         public List<Course>? Courses { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
+        public string CreatedBy { get; set; } = default!;
+        public string? UpdatedBy { get; set; }
     }
 }

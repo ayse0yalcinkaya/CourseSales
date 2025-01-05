@@ -1,6 +1,51 @@
 @CourseSales.API_HostAddress = http://localhost:5174
 
-GET {{CourseSales.API_HostAddress}}/weatherforecast/
-Accept: application/json
 
-###
+ 
+
+GET {{CourseSales.API_HostAddress}}/api/courses
+
+###get paged courses
+GET {{CourseSales.API_HostAddress}}/api/courses?pageNumber=1&pageSize=5
+
+###get course by id
+GET {{CourseSales.API_HostAddress}}/api/courses/1
+
+###create a new course
+POST {{CourseSales.API_HostAddress}}/api/courses
+Content-Type: application/json
+{
+  "name": ".NET",
+  "price": 100,
+  "stock": 120,
+  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took 
+                  a galley of type and scrambled it to make a type specimen book. It has survived not only 
+                  five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+                  It was popularised in the 1960s with the release of Letraset sheets",
+  "categoryId": 1
+}
+
+###update a product
+PUT {{CourseSales.API_HostAddress}}/api/courses/1
+Content-Type: application/json
+{
+  "name": "JavaScript",
+  "price": 80,
+  "stock": 150,
+  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took 
+                  ",
+  "categoryId": 1
+}
+
+
+
+
+
+
+
+
+
+
+

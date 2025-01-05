@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseSales.Service.Courses.Create
 {
-    public record CourseDto(int Id, string Name, decimal Price, int Stock, string Description, int CategoryId);
+    public record CourseDto(int Id, string Name, decimal Price, int Stock, string Description, int CategoryId, string UserId);
     //{
     //    public int Id { get; init; }
     //    public string Name { get; init; }

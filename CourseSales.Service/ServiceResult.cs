@@ -46,7 +46,7 @@ namespace CourseSales.Service
         {
             return new ServiceResult<T>()
             {
-                ErrorMessage = [errorMessage], //new List<String>() { errorMessage }
+                ErrorMessage = new List<String>() { errorMessage }, //[errorMessage]
                 Status = status
             };
         }
@@ -92,5 +92,9 @@ namespace CourseSales.Service
             };
         }
 
+        public static ServiceResult Success(object value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
