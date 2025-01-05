@@ -1,11 +1,17 @@
 Bu proje, bir kurs satış platformu geliştirmek amacıyla hazırlanmıştır. Proje; en iyi uygulama ve teknikleri (best practices) ve modern web uygulama standartlarına uygun olarak, katmanlı bir mimari (N-Layer) kullanılarak geliştirilmiş ve ASP.NET Core'dan yararlanılmıştır.
-Proje geliştirilme aşamasındadır. Tamamlanamamıştır. İncelerken Commit odaklı gidebiliriz.
+Proje geliştirilme aşamasındadır. Tamamlanamamıştır. İncelerken Commit odaklı gidebiliriz. 
+
+
 1. Genel Mimarisi
 Katmanlı Mimari: Repository (DAL), Service (BLL) ve API (Presentation Layer) katmanlarına ayrılmıştır.
 
 ORM Kullanımı: Entity Framework ile CRUD işlemleri gerçekleştirilmiştir.
 
 Bağımlılık Yönetimi: Proje, Dependency Injection (DI) kullanılarak modüler şekilde tasarlanmıştır.
+
+Kullanılan Design Pattern'lar: Repository Design Pattern, Unity Of Work Pattern, Result Pattern
+
+Model Validation: Fluent Validation, Filters, Business Validation
 
 2. Backend (ASP.NET Core)
 JWT Tabanlı Güvenlik: Kullanıcıların güvenli giriş yapması sağlanmıştır.
