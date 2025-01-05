@@ -1,5 +1,5 @@
 Bu proje, bir kurs satış platformu geliştirmek amacıyla hazırlanmıştır. Proje; en iyi uygulama ve teknikleri (best practices) ve modern web uygulama standartlarına uygun olarak, katmanlı bir mimari (N-Layer) kullanılarak geliştirilmiş ve ASP.NET Core'dan yararlanılmıştır.
-Proje geliştirilme aşamasındadır. 
+Proje geliştirilme aşamasındadır. Tamamlanamamıştır. İncelerken Commit odaklı gidebiliriz.
 1. Genel Mimarisi
 Katmanlı Mimari: Repository (DAL), Service (BLL) ve API (Presentation Layer) katmanlarına ayrılmıştır.
 
